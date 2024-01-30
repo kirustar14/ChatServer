@@ -15,11 +15,13 @@ class Handler implements URLHandler {
             String[] parameters = url.getQuery().split("&");
             String[] user = parameters[1].split("="); 
             String[] messages = parameters[0].split("="); 
-            ans.add(user[1]+": "+messages[1]); 
-            for(String y: ans){
-                x+= y+"\n"; 
+            if(user[0]=="user"&&messages[0]=="s"){
+                ans.add(user[1]+": "+messages[1]); 
+                for(String y: ans){
+                    x+= y+"\n"; 
+                }
             }
-            return x; 
+            return x;
         }
         return "404 Not Found!";
 
