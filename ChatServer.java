@@ -4,10 +4,9 @@ import java.util.*;
 
 class Handler implements URLHandler {
     ArrayList<String> ans = new ArrayList<>(); 
-
+    String x = ""; 
 
     public String handleRequest(URI url) {
-        String x = ""; 
         if(url.getPath().equals("/")){
             return x; 
         }
@@ -17,10 +16,8 @@ class Handler implements URLHandler {
             String[] messages = parameters[0].split("="); 
             if(user[0]=="user"&&messages[0]=="s"){
                 ans.add(user[1]+": "+messages[1]); 
-                for(String y: ans){
-                    x+= y+"\n"; 
-                }
             }
+            x = String.join("\n", ans); 
             return x;
         }
         return "404 Not Found!";
