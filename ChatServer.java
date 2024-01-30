@@ -1,27 +1,28 @@
 import java.io.IOException;
 import java.net.URI;
+import java.util.*; 
 
 class Handler implements URLHandler {
-    // The one bit of state on the server: a number that will be manipulated by
-    // various requests.
-    int num = 0;
+    ArrayList<String> ans = new ArrayList<>(); 
+
 
     public String handleRequest(URI url) {
-        if (url.getPath().equals("/")) {
-            return String.format("Number: %d", num);
-        } else if (url.getPath().equals("/increment")) {
-            num += 1;
-            return String.format("Number incremented!");
-        } else {
-            if (url.getPath().contains("/add")) {
-                String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("count")) {
-                    num += Integer.parseInt(parameters[1]);
-                    return String.format("Number increased by %s! It's now %d", parameters[1], num);
-                }
-            }
-            return "404 Not Found!";
+        String x = ""; 
+        if(url.getPath().equals("/")){
+            return x; 
         }
+        else if(url.getPath().equals("/add-message")){
+            String[] parameters = url.getQuery().split("&");
+            String[] name = parameters[0].split("="); 
+            String[] messages = parameters[1].split("="); 
+            ans.add(name[1]+": "+messages[1]); 
+            for(String y: ans){
+                x+= y+"\n"; 
+            }
+            return x; 
+        }
+        return "404 Not Found!";
+
     }
 }
 
