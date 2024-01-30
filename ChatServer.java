@@ -13,8 +13,8 @@ class Handler implements URLHandler {
         }
         else if(url.getPath().equals("/add-message")){
             String[] parameters = url.getQuery().split("&");
-            String[] user = parameters[0].split("="); 
-            String[] messages = parameters[1].split("="); 
+            String[] user = parameters[1].split("="); 
+            String[] messages = parameters[0].split("="); 
             ans.add(user[1]+": "+messages[1]); 
             for(String y: ans){
                 x+= y+"\n"; 
