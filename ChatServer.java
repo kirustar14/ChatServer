@@ -14,7 +14,7 @@ class Handler implements URLHandler {
             String[] parameters = url.getQuery().split("&");
             String[] user = parameters[1].split("="); 
             String[] messages = parameters[0].split("="); 
-            if(user[0]=="user"&&messages[0]=="s"){
+            if(user[0].equals("user")&&messages[0].equals("s")){
                 ans.add(user[1]+": "+messages[1]); 
             }
             x = String.join("\n", ans); 
